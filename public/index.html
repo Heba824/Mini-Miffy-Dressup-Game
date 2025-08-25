@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Miffy Dress-Up</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Miffy Fits</h1>
+    <p class="subtitle">Customize Miffy's fit!</p>
+
+    <div class="preview-box" id="preview-box">
+      <img src="Images/miffy_base.png" class="miffy">
+      <img src="Images/shirt1.png" id="shirt1" class="fit hidden">
+      <img src="Images/shirt2.png" id="shirt2" class="fit hidden">
+      <img src="Images/shirt3.png" id="shirt3" class="fit hidden">
+      <img src="Images/shirt4.png" id="shirt4" class="fit hidden">
+      <img src="Images/shirt5.png" id="shirt5" class="fit hidden">
+      <img src="Images/shoes1.png" id="shoes1" class="fit hidden">
+      <img src="Images/shoes2.png" id="shoes2" class="fit hidden">
+      <img src="Images/shoes3.png" id="shoes3" class="fit hidden"> 
+      <img src="Images/shoes4.png" id="shoes4" class="fit hidden">
+      <img src="Images/shoes5.png" id="shoes5" class="fit hidden">
+      <img src="Images/bow1.png" id="bow1" class="fit hidden">
+      <img src="Images/bow2.png" id="bow2" class="fit hidden">
+      <img src="Images/bow3.png" id="bow3" class="fit hidden">
+      <img src="Images/bow4.png" id="bow4" class="fit hidden">
+      <img src="Images/bow5.png" id="bow5" class="fit hidden">
+    </div>
+
+    <div class="buttons">
+      <img src="Images/shirt.png" alt="Shirt" class="icon-btn" id="shirt-button">
+      <img src="Images/bow.png" alt="Bow" class="icon-btn" id="bow-button">
+      <img src="Images/accessories.png" alt="Accessories" class="icon-btn" id="shoes-button">
+    </div>
+
+    <script src="../renderer.js"></script>
+    <script>
+      // Wait for app path to be available
+      setTimeout(() => {
+        const previewBox = document.getElementById('preview-box');
+        
+        // Use the correct path based on whether app is packaged
+        let imagePath;
+        if (window.isPackaged) {
+          imagePath = `file://${window.appPath}/public/Images/bg1.png`;
+        } else {
+          imagePath = 'Images/bg1.png';
+        }
+        
+        previewBox.style.backgroundImage = `url("${imagePath}")`;
+        previewBox.style.backgroundSize = 'cover';
+        previewBox.style.backgroundPosition = 'center';
+        previewBox.style.backgroundRepeat = 'no-repeat';
+        
+        console.log('Setting background image to:', imagePath);
+      }, 100);
+
+      const shirtButton = document.getElementById('shirt-button');
+      const shirts = [
+        document.getElementById('shirt1'),
+        document.getElementById('shirt2'),
+        document.getElementById('shirt3'),
+        document.getElementById('shirt4'),
+        document.getElementById('shirt5')
+      ];
+
+      let currentShirt = -1;
+
+      shirtButton.addEventListener('click', () => {
+        shirts.forEach(shirt => {
+          shirt.classList.add('hidden');
+          shirt.classList.remove('visible');
+        });
+
+        currentShirt = (currentShirt + 1) % shirts.length;
+
+        shirts[currentShirt].classList.remove('hidden');
+        shirts[currentShirt].classList.add('visible');
+      });
+
+      // Shoes
+      const shoesButton = document.getElementById('shoes-button');
+      const shoes = [
+        document.getElementById('shoes1'),
+        document.getElementById('shoes2'),
+        document.getElementById('shoes3'),
+        document.getElementById('shoes4'),
+        document.getElementById('shoes5')
+      ];
+      let currentShoes = -1;
+
+      shoesButton.addEventListener('click', () => {
+        shoes.forEach(shoe => {
+          shoe.classList.add('hidden');
+          shoe.classList.remove('visible');
+        });
+
+        currentShoes = (currentShoes + 1) % shoes.length;
+
+        shoes[currentShoes].classList.remove('hidden');
+        shoes[currentShoes].classList.add('visible');
+      });
+
+      const bowButton = document.getElementById('bow-button');
+      const bow = [
+        document.getElementById('bow1'),
+        document.getElementById('bow2'),
+        document.getElementById('bow3'),
+        document.getElementById('bow4'),
+        document.getElementById('bow5')
+      ];
+      let currentBow = -1;
+
+      bowButton.addEventListener('click', () => {
+        bow.forEach(bow => {
+          bow.classList.add('hidden');
+          bow.classList.remove('visible');
+        });
+
+        currentBow = (currentBow + 1) % bow.length;
+
+        bow[currentBow].classList.remove('hidden');
+        bow[currentBow].classList.add('visible');
+      });
+    </script>
+  </div>
+</body>
+</html>

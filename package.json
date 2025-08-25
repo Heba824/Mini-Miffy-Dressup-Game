@@ -1,0 +1,42 @@
+{
+  "name": "miffy-dressup",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "electron": "^37.2.4",
+    "electron-builder": "^26.0.12"
+  },
+"build": {
+  "appId": "com.miffy.dressup",
+  "productName": "Miffy Dress-Up",
+  "mac": {
+    "icon": "build/miffyicon.icns",
+    "target": [
+      {
+        "target": "zip",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "files": [
+    "public/**/*",
+    "styles/**/*",
+    "app.js",
+    "package.json"
+  ]
+}
+
+
+
+}
